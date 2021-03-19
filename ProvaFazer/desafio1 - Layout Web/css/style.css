@@ -6,10 +6,11 @@
 html,
 body {
     height: 100%;
-    
+    display: inline-block;
 }
 
 .bg {
+    color: white;
     background-image: url("../img/background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,21 +18,28 @@ body {
     background-attachment: fixed;
 }
 
+.text {
+    margin-top: 200px;
+    margin-left: 15%
+}
+
 .icon {
-    position: absolute;
-    top: 35%;
-    left: 115%;
+    position: fixed;
+    top: 270px;
+    left: 85%;
     height: 100px;
 }
 
-.row{
-    color: white;
-    margin-top: 20%;
-    position: absolute;
+@media screen and (max-width: 991px){
+    .text {
+        margin-top: 186px;
+        margin-left: 15%
+    }
 }
 
 @media screen and (max-width: 768px) {
     .bg {
+        display: inline-block;
         text-align: justify;
         color: white;
         background-image: url("../img/background.jpg");
@@ -41,5 +49,21 @@ body {
         background-attachment: fixed;
     }
 
-    
+    .icon {
+        position: fixed;
+        top: 4%;
+        left: 150px;
+        transform: translateX(100px);
+    }
+
+    .text {
+        margin-top: 120px;
+        margin-left: 15%;
+    }
+}
+
+@media screen and (max-width: 575px){
+    .icon {
+        display: none;
+    }
 }
