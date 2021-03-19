@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    
+}
+
+.bg {
+    background-image: url("../img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.icon {
+    position: absolute;
+    top: 35%;
+    left: 115%;
+    height: 100px;
+}
+
+.row{
+    color: white;
+    margin-top: 20%;
+    position: absolute;
+}
+
+@media screen and (max-width: 768px) {
+    .bg {
+        text-align: justify;
+        color: white;
+        background-image: url("../img/background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    
+}
