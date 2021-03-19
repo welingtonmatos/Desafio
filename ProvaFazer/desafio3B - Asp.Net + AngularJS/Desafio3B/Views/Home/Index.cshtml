@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section script{
+    <script src="~/Scripts/app.js"></script>
+}
+<div ng-controller="AppController" class="ng-cloak">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="alert alert-info" role="alert">
+                <h5>Atividades do desafio</h5>
+                <p>Termine a implementação da lista de compra utilizando AngularJS + ASP.NET MVC de forma que:</p>
+                <div>
+                    <ol>
+                        <li>O cálculo do valor total deve levar em conta a quantidade de cada alimento</li>
+                        <li>O alimento pesquisado no auto-complete deve ser adicionado na lista ao clicar no botão 'Adicionar'</li>
+                        <li>Implementar o botão 'salvar' para que armazene no banco de dados local</li>
+                        <li>Ao recarregar a tela, popular a lista conforme salvo no banco de dados local exibindo um loading enquanto carrega os dados</li>
+                        <li>Implementar um botão excluir para remover no client o alimento da lista, a exclusão será efetivada apenas no botão salvar</li>
+                        <li>Ao incluir um alimento que já exista na lista, aumentar a quantidade do mesmo</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <h2>Lista de Compras</h2>
+            <div class="row">
+                <div class="col-sm-8 mb-2">
+                    <md-autocomplete md-no-cache="true" md-selected-item="alimentoBuscado" md-min-length="2"
+                                     md-search-text="termo" md-items="alimento in buscarAlimentos(termo)"
+                                     md-item-text="alimento.Nome" placeholder="Pesquise um alimento...">
+                        <span>{{ alimento.Nome }}</span>
+                    </md-autocomplete>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-primary btn-block" ng-click="add()" ng-disabled="!alimentoBuscado">Adicionar</button>
+                </div>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th width="100">Quantidade</th>
+                        <th>Subtotal</th>
+                        <th width="100"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="alimento in alimentos track by $index">
+                        <td>{{alimento.Nome}}</td>
+                        <td>{{alimento.Preco | currency}}</td>
+                        <td>
+                            <input type="number" min="1" class="form-control" ng-model="alimento.Quantidade" />
+                        </td>
+                        <td>
+                            {{alimento.Preco * alimento.Quantidade | currency}}
+                        </td>
+                        <td>
+                            <button class="btn btn-sm" title="Remover"><i class="fa fa-trash-o ml-1 mr-1"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <i class="fa fa-spinner fa-spin"></i>
+                <b>Carregando...</b>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6 text-right">
+
+                    <h5>Total: R$150</h5>
+                    <button class="mt-3 btn btn-lg btn-success" ng-click="salvar()">Salvar alterações</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
